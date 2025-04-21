@@ -1,0 +1,5 @@
+PUBLISHER_NOTIFICATION_SENT = False
+
+def set_notification_sent(state):
+  global PUBLISHER_NOTIFICATION_SENT
+  PUBLISHER_NOTIFICATION_SENT = state

@@ -1,6 +1,6 @@
 import time
 import network
-import urequests
+# import urequests
 
 from lib import secrets, config, lcd
 
@@ -24,15 +24,4 @@ def connect():
   lcd.display("to Wifi", 2)
 
   print("Connected to Wi-Fi:", wlan.ifconfig())
-
-def health():
-  r = urequests.get("https://www.google.com")
-  status = r.status_code
-  r.close()
-
-  if status == 200:
-    lcd.display(f"Online ({config.APP_VERSION})", 2)
-    config.BROKER_LED.on()
-  else:
-    lcd.display(f"Offline ({config.APP_VERSION})", 2)
-    config.BROKER_LED.off()
+  config.PUBLISHER_LED.on()

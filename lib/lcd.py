@@ -94,3 +94,6 @@ def display(message, line):
   set_byte(start_byte, LCD_CMD)
   for i in range(LCD_WIDTH):
     set_byte(ord(message[i]),LCD_CHR)
+
+def off():
+  set_byte(0x01, LCD_CMD)

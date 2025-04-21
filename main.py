@@ -1,23 +1,21 @@
 from utime import sleep
 
-from lib import config, wifi, clock, lcd, led
+from lib import config, wifi, clock, lcd, hardware
 
 def init():
   print("Program: start")
+  hardware.reset()
   lcd.configure()
   wifi.connect()
-  wifi.health()
-
   clock.sync_rtc()
 
 def main():
   clock.tick()
-  [hour, minute, second] = clock.now()
-  print(second)
-  led.toggle()
+  hardware.listen()
 
 def end():
   print("Program: end")
+  hardware.kill()
 
 def app():
   try:
