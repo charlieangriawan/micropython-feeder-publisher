@@ -31,8 +31,8 @@ def health():
   r.close()
 
   if status == 200:
-    lcd.display("Online (v1.3)", 2)
+    lcd.display(f"Online ({config.APP_VERSION})", 2)
     config.BROKER_LED.on()
   else:
-    lcd.display("Offline (v1.3)", 2)
+    lcd.display(f"Offline ({config.APP_VERSION})", 2)
     config.BROKER_LED.off()

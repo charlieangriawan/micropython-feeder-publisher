@@ -1,4 +1,6 @@
-from lib import wifi, lcd, led
+from utime import sleep
+
+from lib import config, wifi, clock, lcd, led
 
 def init():
   print("Program: start")
@@ -6,17 +8,26 @@ def init():
   wifi.connect()
   wifi.health()
 
+  clock.sync_rtc()
+
+def main():
+  clock.tick()
+  [hour, minute, second] = clock.now()
+  print(second)
+  led.toggle()
+
 def end():
   print("Program: end")
 
-def main():
+def app():
   try:
     init()
     while True:
-      led.toggle()
+      main()
+      sleep(config.APP_CYCLE_SECOND)
   except KeyboardInterrupt:
     pass
   finally:
     end()
 
-main()
+app()

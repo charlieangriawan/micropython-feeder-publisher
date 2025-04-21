@@ -1,6 +1,7 @@
 from machine import Pin
 
 APP_VERSION = "v1.0.0"
+APP_CYCLE_SECOND = 0.1
 
 LCD_RS_PIN = 0
 LCD_E_PIN  = 1
@@ -10,3 +11,4 @@ LCD_D6_PIN = 4
 LCD_D7_PIN = 5
 
 BROKER_LED = Pin(28, Pin.OUT)
+
