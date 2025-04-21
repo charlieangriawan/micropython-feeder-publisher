@@ -21,7 +21,7 @@ def connect():
     print("Still trying to connect...")
 
   lcd.display("Connected", 1)
-  lcd.display("to Wifi", 2)
+  lcd.display(f"Online ({config.APP_VERSION})", 2)
 
   print("Connected to Wi-Fi:", wlan.ifconfig())
   config.PUBLISHER_LED.on()

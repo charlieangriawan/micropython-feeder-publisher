@@ -1,6 +1,6 @@
 from utime import sleep
 
-from lib import config, wifi, clock, lcd, hardware
+from lib import config, wifi, clock, lcd, hardware, publisher
 
 def init():
   print("Program: start")
@@ -11,6 +11,7 @@ def init():
 
 def main():
   clock.tick()
+  publisher.check_missed_feeding()
   hardware.listen()
 
 def end():
@@ -23,8 +24,8 @@ def app():
     while True:
       main()
       sleep(config.APP_CYCLE_SECOND)
-  except KeyboardInterrupt:
-    pass
+  except Exception as e:
+    print(e)
   finally:
     end()
 

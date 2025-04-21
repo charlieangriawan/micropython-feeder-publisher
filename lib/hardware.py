@@ -36,8 +36,11 @@ def listen():
   else:
     RESET_BUTTON_PRESSED = False
 
+def fed():
+  return NAIXI_FED, NAICHA_FED
+
 def kill():
   config.NAIXI_LED.off()
   config.NAICHA_LED.off()
-  config.BROKER_LED.off()
+  config.PUBLISHER_LED.off()
   lcd.off()
