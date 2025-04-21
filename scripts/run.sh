@@ -1,0 +1,1 @@
+mpremote exec 'import main'
