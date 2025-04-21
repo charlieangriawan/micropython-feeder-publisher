@@ -1,11 +1,14 @@
 import time
 import network
+import urequests
 
-from lib import secrets
+from lib import secrets, config, lcd
 
 def connect():
   ssid = secrets.WIFI_SSID
   password = secrets.WIFI_PASSWORD
+
+  lcd.display("Connecting Wifi", 1)
 
   wlan = network.WLAN(network.STA_IF)
   wlan.active(True)
@@ -14,6 +17,22 @@ def connect():
   print("Connecting to WiFi...")
   while not wlan.isconnected():
     time.sleep(1)
+    lcd.display("Retrying...", 2)
     print("Still trying to connect...")
 
+  lcd.display("Connected", 1)
+  lcd.display("to Wifi", 2)
+
   print("Connected to Wi-Fi:", wlan.ifconfig())
+
+def health():
+  r = urequests.get("https://www.google.com")
+  status = r.status_code
+  r.close()
+
+  if status == 200:
+    lcd.display("Online (v1.3)", 2)
+    config.BROKER_LED.on()
+  else:
+    lcd.display("Offline (v1.3)", 2)
+    config.BROKER_LED.off()

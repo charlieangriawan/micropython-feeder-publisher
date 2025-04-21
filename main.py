@@ -4,6 +4,7 @@ def init():
   print("Program: start")
   lcd.configure()
   wifi.connect()
+  wifi.health()
 
 def end():
   print("Program: end")

@@ -3,12 +3,13 @@ from machine import Pin
 
 from lib import config
 
-LCD_RS = 0
-LCD_E  = 1
-LCD_D4 = 2
-LCD_D5 = 3
-LCD_D6 = 4
-LCD_D7 = 5
+LCD_RS = config.LCD_RS_PIN
+LCD_E  = config.LCD_E_PIN
+LCD_D4 = config.LCD_D4_PIN
+LCD_D5 = config.LCD_D5_PIN
+LCD_D6 = config.LCD_D6_PIN
+LCD_D7 = config.LCD_D7_PIN
+
 LCD_WIDTH = 16
 LCD_CHR = 1
 LCD_CMD = 0
