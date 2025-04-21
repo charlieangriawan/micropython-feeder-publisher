@@ -24,8 +24,9 @@ def app():
     while True:
       main()
       sleep(config.APP_CYCLE_SECOND)
-  except Exception as e:
-    print(e)
+  except KeyboardInterrupt:
+    pass
+    # print(e)
   finally:
     end()
 

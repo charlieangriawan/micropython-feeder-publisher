@@ -1,4 +1,4 @@
-from lib import clock, hardware
+from lib import clock, hardware, notification
 
 PUBLISHER_NOTIFICATION_SENT = False
 
@@ -34,7 +34,7 @@ def broadcast_hungry_girls():
     message = f"Naicha SKIPPED {context}. (ALERT)"
 
   if (message):
-    print(message)
+    notification.notify_subscribers(message)
 
 def broadcast_happy_girls():
   global PUBLISHER_NOTIFICATION_SENT
@@ -53,6 +53,6 @@ def broadcast_happy_girls():
     message = f"Naicha have been fed {context}."
 
   if (message):
-    print(message)
+    notification.notify_subscribers(message)
   
   PUBLISHER_NOTIFICATION_SENT = True

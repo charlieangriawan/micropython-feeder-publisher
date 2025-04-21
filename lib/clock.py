@@ -11,7 +11,7 @@ SYSTEM_SECOND_NOW = 0
 def sync_rtc():
   lcd.display("Syncing Clock", 1)
 
-  url = f'http://api.ipgeolocation.io/timezone?apiKey={secrets.GEOLOCATION_SECRET}&tz=Asia/Singapore'
+  url = f'https://api.ipgeolocation.io/timezone?apiKey={secrets.GEOLOCATION_SECRET}&tz=Asia/Singapore'
   r = urequests.get(url)
   data = r.json()
 
