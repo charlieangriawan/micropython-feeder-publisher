@@ -1,4 +1,4 @@
-from lib import clock, hardware, notification
+from lib import config, clock, hardware, notification
 
 PUBLISHER_NOTIFICATION_SENT = False
 
@@ -7,6 +7,9 @@ def set_notification_sent(state):
   PUBLISHER_NOTIFICATION_SENT = state
 
 def check_missed_feeding():
+  if (config.PUBLISHER_LED.value() == 0):
+    return
+
   [hour, minute, second] = clock.now()
 
   if (hour == 10 and minute == 0 and second == 0):
@@ -33,8 +36,10 @@ def broadcast_hungry_girls():
   elif not naicha_fed:
     message = f"Naicha SKIPPED {context}. (ALERT)"
 
-  if (message):
-    notification.notify_subscribers(message)
+  if (not message):
+    return
+
+  notification.notify_subscribers(message)
 
 def broadcast_happy_girls():
   global PUBLISHER_NOTIFICATION_SENT
@@ -52,7 +57,8 @@ def broadcast_happy_girls():
   elif naicha_fed:
     message = f"Naicha have been fed {context}."
 
-  if (message):
-    notification.notify_subscribers(message)
-  
+  if (not message):
+    return
+
+  notification.notify_subscribers(message)
   PUBLISHER_NOTIFICATION_SENT = True

@@ -1,7 +1,7 @@
 import urequests
 from machine import RTC
 
-from lib import secrets, lcd
+from lib import secrets, wifi, lcd
 
 STSTEM_RTC = RTC()
 SYSTEM_HOUR_NOW = 0
@@ -32,6 +32,9 @@ def tick():
   global SYSTEM_SECOND_NOW
 
   now = STSTEM_RTC.datetime()
+
+  if (SYSTEM_SECOND_NOW == 15):
+    wifi.health()
 
   if (SYSTEM_SECOND_NOW != now[6]):
     lcd.display(f"Time: {SYSTEM_HOUR_NOW:02}:{SYSTEM_MINUTE_NOW:02}:{SYSTEM_SECOND_NOW:02}", 1)
